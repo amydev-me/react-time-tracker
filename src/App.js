@@ -1,6 +1,7 @@
 import React from 'react';
 import './seed';
 import './helpers';
+import './client';
 import './uuid';
 import uuid from './uuid';
 import { toHaveAccessibleDescription } from '@testing-library/jest-dom/matchers';
@@ -261,23 +262,8 @@ class Timer extends React.Component {
 
 
 class TimeDashboard extends React.Component { 
-  state = {
-    timers : [
-      {
-        title: 'Practice squat',
-        project : 'Gym Chores',
-        id: uuid.v4(),
-        elapsed : 5456099,
-        runningSince : Date.now()
-      },
-      {
-        title: 'Bake squash',
-        project : 'Kitchecnn nChores',
-        id: uuid.v4(),
-        elapsed : 1273998,
-        runningSince : null
-      }
-    ]
+   state = {
+    timers : []   
   };
   handleCreateFormSubmit = (timer) => {
     this.createTimer(timer);
