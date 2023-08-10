@@ -190,9 +190,11 @@ class TimerActionButton extends React.Component {
           onClick={this.props.onStopClick}>Stop</div>
       )
     }else{
-      <div 
-      className='ui bottom attached green basic button' 
-      onClick={this.props.onStartClick}>Start</div>
+      return (
+        <div 
+            className='ui bottom attached green basic button' 
+            onClick={this.props.onStartClick}>Start</div>
+      )
     }
   }
 }
@@ -251,6 +253,7 @@ class Timer extends React.Component {
           onStartClick = {this.handleStartClick}
           onStopClick = {this.handleStopClick}
         /> 
+        
       </div>
     );
   }
