@@ -1,10 +1,3 @@
-import React from 'react';
-import './seed';
-import './helpers';
-import './client';
-import './uuid';
-import uuid from './uuid';
-import { toHaveAccessibleDescription } from '@testing-library/jest-dom/matchers';
 
 class EditableTimerList extends React.Component {
   render() {
@@ -261,10 +254,19 @@ class Timer extends React.Component {
 }
 
 
-class TimeDashboard extends React.Component { 
+class TimersDashboard extends React.Component { 
    state = {
     timers : []   
   };
+  componentDidMount() {
+    this.loadTimersFromServer();
+    setInterval(this.loadTimersFromServer, 5000)
+  }
+  loadTimersFromServer = () => {
+    client.getTimers((serverTimers) => {
+      this.setState({timers: serverTimers})
+    })
+  }
   handleCreateFormSubmit = (timer) => {
     this.createTimer(timer);
   };
@@ -358,4 +360,8 @@ class TimeDashboard extends React.Component {
   }
 } 
 
-export default TimeDashboard;
+ReactDOM.render(
+  <TimersDashboard />,
+  document.getElementById('content')
+);
+// export default TimeDashboard;
